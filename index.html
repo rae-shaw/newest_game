@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dot Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <section class="bg-white">
+      <p>
+        Score: 0
+      </p>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Start
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Pause
+      </button>
+      <div class="relative pt-1">
+        <label for="customRange1" class="form-label">Speed</label>
+        <input
+          type="range"
+          class="
+            form-range
+            appearance-none
+            w-full
+            h-6
+            p-0
+            bg-transparent
+            focus:outline-none focus:ring-0 focus:shadow-none
+          "
+          id="customRange1"
+        />
+      </div>
+    </section>
+    <section id="game-screen" class="bg-black text-white">
+      GAME HERE
+    </section>
+  </main>
+</body>
+</html>
