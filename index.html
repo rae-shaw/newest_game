@@ -6,36 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
 </head>
-<body>
-  <main>
-    <section class="bg-white">
-      <p>
-        Score: 0
-      </p>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Start
-      </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Pause
-      </button>
+<body class="bg-pink-200 relative">
+  <main class="m-1 p-2 max-w-lg bg-orange-400">
+    <section class="flex-row bg-white p-2 mb-1 border-2 border-rose-500">
+      <div class="flex-row mb-1">
+        <p>
+          Score: 0
+        <p>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Start
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Pause
+        </button>
+      </div>
       <div class="relative pt-1">
         <label for="customRange1" class="form-label">Speed</label>
-        <input
-          type="range"
-          class="
-            form-range
-            appearance-none
-            w-full
-            h-6
-            p-0
-            bg-transparent
-            focus:outline-none focus:ring-0 focus:shadow-none
-          "
-          id="customRange1"
-        />
+        <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full" type="range" min="1" max="100" step="1" value="15" />
       </div>
     </section>
-    <section id="game-screen" class="bg-black text-white">
+    <section id="game-screen" class="p-2 mb-1 min-h-[50vh] bg-white border-2 border-rose-500">
       GAME HERE
     </section>
   </main>
