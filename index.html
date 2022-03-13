@@ -6,28 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
 </head>
-<body class="bg-pink-200 relative">
-  <main class="m-1 p-2 max-w-lg bg-orange-400">
-    <section class="flex-row bg-white p-2 mb-1 border-2 border-rose-500">
-      <div class="flex-row mb-1">
-        <p>
+<body class="mt-12 bg-slate-50 relative">
+  <main class="mx-auto bg-slate-300 rounded p-2 max-w-lg ">
+    <section class="rounded flex-row bg-fun-green p-2">
+      <span class="mb-1 p-2">
+        <div class="relative">
+        <p class="absolute left-">
           Score: 0
         <p>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Start
-        </button>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Pause
-        </button>
-      </div>
-      <div class="relative pt-1">
+        </div>
+        <div class="relative">
+          <button id="btn" class="absolute top-0 right-0 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Start
+          </button>
+        </div>
+      </span>
+      <div class="relative p-2">
         <label for="customRange1" class="form-label">Speed</label>
-        <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full" type="range" min="1" max="100" step="1" value="15" />
+        <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full" type="range" min="1" max="100" step="1" value="1" />
       </div>
     </section>
-    <section id="game-screen" class="p-2 mb-1 min-h-[50vh] bg-white border-2 border-rose-500">
-      GAME HERE
+    <section class="rounded p-2 mb-1 min-h-[50vh] bg-black">
+      <canvas id="canvas"></canvas>
+      <div id="dot" class="w-10 h-10 rounded-full bg-fun-green"></div>
     </section>
   </main>
+  <script src="src/index.js"></script>
 </body>
 </html>
