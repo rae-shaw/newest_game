@@ -7,7 +7,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "build:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "start": "live-server"
   },
   "repository": "https://github.com/rae-shaw/newest_game.git",
   "author": "Rachael Shaw <rachael.shaw@keethealth.com>",
