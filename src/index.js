@@ -1,5 +1,6 @@
 let request;
 let i = 0;
+let score = 0;
 
 const button = document.getElementById('btn');
 const game = document.getElementById('game');
@@ -18,23 +19,24 @@ button.addEventListener('click', e => {
   }
 })
 
-const slider = document.getElementById("game-slider");
-const output = document.getElementById("speed");
-output.innerHTML = slider.value; // Display the default slider value
+const slider = document.getElementById('game-slider');
+const output = document.getElementById('speed');
+output.innerHTML = slider.value; 
 
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
 
-// const diameter = 10 + Math.floor(Math.random() * 41);
+const scoreTrack = document.getElementById("score")
 
-const diameter = 50
-const xPosition = 10
-const yPosition = 10
+function clickedIt() {
+  score++;
+  scoreTrack.innerHTML = score
+}
+
 
 function startAnimation() {
-  console.log(diameter)
-    game.innerHTML += '<div class="absolute w-10 h-10 rounded-full bg-fun-green"></div>'
+    game.innerHTML += '<div onclick="clickedIt()" class="absolute w-10 h-10 rounded-full bg-fun-green"></div>'
     requestAnimationFrame(performAnimation)
   }
 function stopAnimation() {
@@ -46,7 +48,6 @@ function stopAnimation() {
     request = requestAnimationFrame(performAnimation)
   }
 
-  // logs for slider
   // points increase when clicking dot
   // points only increase when in moving state
   // dot "pops" when clicked on
