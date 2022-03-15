@@ -36,7 +36,7 @@ function clickedIt() {
 
 
 function startAnimation() {
-    game.innerHTML += '<div onclick="clickedIt()" class="absolute w-10 h-10 rounded-full bg-fun-green"></div>'
+    game.innerHTML += '<div onclick="clickedIt()" class="absolute w-[100px] h-[100px] rounded-full bg-fun-green"></div>'
     requestAnimationFrame(performAnimation)
   }
 function stopAnimation() {
@@ -48,7 +48,9 @@ function stopAnimation() {
     request = requestAnimationFrame(performAnimation)
   }
 
-  // points increase when clicking dot
+  // tailwindcss custom animations: https://tailwindcss.com/docs/animation#using-custom-values
+  // tailwindcss arbitrary values: https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values
+  // css data types: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types
   // points only increase when in moving state
   // dot "pops" when clicked on
   // inline styles/using variable for dot in innerHTML
