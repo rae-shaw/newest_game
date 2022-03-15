@@ -9,21 +9,23 @@
 <body class="mt-12 bg-slate-50 relative">
   <main class="mx-auto bg-slate-300 rounded p-2 max-w-lg ">
     <section class="rounded flex-row bg-fun-green p-2">
-      <span class="mb-1 p-2">
-        <div class="relative">
-        <p class="absolute left-">
-          Score: 0
-        <p>
-        </div>
-        <div class="relative">
-          <button id="btn" class="absolute top-0 right-0 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Start
-          </button>
-        </div>
-      </span>
+      <div class="mb-4">
+        <span class="mb-1 p-2">
+          <div class="relative">
+          <p class="absolute left-">
+            Score: 0
+          <p>
+          </div>
+          <div class="relative">
+            <button id="btn" class="absolute top-0 right-0 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Start
+            </button>
+          </div>
+        </span>
+      </div>
       <div class="relative p-2">
-        <label for="customRange1" class="form-label">Speed</label>
-        <input class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full" type="range" min="1" max="100" step="1" value="1" />
+        <input id="game-slider" class="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full" type="range" min="10" max="100" value="10" />
+        <p>Speed: <span id="speed"></span></p>
       </div>
     </section>
     <section id="game" class="relative rounded p-2 mb-1 min-h-[50vh] bg-black">
