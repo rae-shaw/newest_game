@@ -2,6 +2,7 @@ let i = 0
 let score = 0
 let interval = 0
 let timer = 1000
+const colors = ['#00bfb2', '#d3273e', '#e56db1', '#41b6e6']
 
 const button = document.getElementById('btn')
 const gameArea = document.getElementById('game')
@@ -47,16 +48,21 @@ function clickedDot() {
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100).toString()
+  const dotColor = getRanItemFromArr(colors)
+  console.log(dotColor)
   span.setAttribute = ('class', 'dot')
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
-  span.style.backgroundColor = '#00bfb2'
+  span.style.backgroundColor = dotColor
   span.style.borderRadius = '50%'
   span.style.top = '10px';
   span.style.left = '10px';
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
 }
+function getRandomColor(arr) {
+   return arr[Math.floor(Math.random() * arr.length)]
+ }
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
