@@ -10,6 +10,7 @@ const slider = document.getElementById('game-slider')
 const output = document.getElementById('speed')
 const scoreTrack = document.getElementById("score")
 let turnedOn = false
+let dotValue;
 const dots = () => {
   document.getElementsByClassName('.dot')
 }
@@ -39,8 +40,10 @@ slider.onInput = function() {
 // dot
 function clickedDot() {
   if (turnedOn) {
-    score++;
+    score += dotValue;
     scoreTrack.innerHTML = score
+    let dot = this
+    this.parentNode.removeChild(dot);
   } else {
   }
 }
@@ -48,8 +51,8 @@ function clickedDot() {
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100).toString()
-  const dotColor = getRanItemFromArr(colors)
-  console.log(dotColor)
+  const dotColor = getRandomColor(colors)
+  dotValue = calcValue(dotSize)
   span.setAttribute = ('class', 'dot')
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
@@ -69,4 +72,9 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min); 
 }
+
+function calcValue(size) {
+  return Math.round(11 - (size * 0.1))
+}
+
 
