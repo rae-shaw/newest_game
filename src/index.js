@@ -1,4 +1,3 @@
-// let request;
 let i = 0
 let score = 0
 let interval = 0
@@ -10,6 +9,9 @@ const slider = document.getElementById('game-slider')
 const output = document.getElementById('speed')
 const scoreTrack = document.getElementById("score")
 let turnedOn = false
+const dots = () => {
+  document.getElementsByClassName('.dot')
+}
 
 button.addEventListener('click', e => {
   if (!turnedOn) {
@@ -43,14 +45,22 @@ function clickedDot() {
 }
 
 function createDot() {
-  console.log('in create dot');
   const span = document.createElement('div')
-  span.style.width = '100px'
-  span.style.height = '100px'
+  const dotSize = getRandomInt(10, 100).toString()
+  span.setAttribute = ('class', 'dot')
+  span.style.width = `${dotSize}px`
+  span.style.height = `${dotSize}px`
   span.style.backgroundColor = '#00bfb2'
   span.style.borderRadius = '50%'
-  span.style.display = 'inline-block'
+  span.style.top = '10px';
+  span.style.left = '10px';
   span.addEventListener('click', clickedDot)
-  console.log(span);
   gameArea.append(span);
 }
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); 
+}
+
