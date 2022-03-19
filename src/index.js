@@ -1,59 +1,56 @@
-let request;
-let i = 0;
-let score = 0;
+// let request;
+let i = 0
+let score = 0
+let interval = 0
+let timer = 1000
 
-const button = document.getElementById('btn');
-const game = document.getElementById('game');
+const button = document.getElementById('btn')
+const gameArea = document.getElementById('game')
+const slider = document.getElementById('game-slider')
+const output = document.getElementById('speed')
+const scoreTrack = document.getElementById("score")
 let turnedOn = false
 
-
 button.addEventListener('click', e => {
-  if (turnedOn) {
-    turnedOn = false
+  if (!turnedOn) {
+    turnedOn = true
     e.currentTarget.textContent = 'Pause'
-    startAnimation()
+    interval = setInterval(game, timer);
   } else {
-    turnedOn = true;
+    turnedOn = false
     e.currentTarget.textContent = 'Start'
-    stopAnimation()
+    clearInterval(interval);
   }
 })
 
-const slider = document.getElementById('game-slider');
-const output = document.getElementById('speed');
-output.innerHTML = slider.value; 
+function game() {
+  createDot();
+}
 
-slider.oninput = function() {
+// slider
+output.innerHTML = slider.value;
+slider.onInput = function() {
   output.innerHTML = this.value;
 }
 
-const scoreTrack = document.getElementById("score")
-
-function clickedIt() {
-  score++;
-  scoreTrack.innerHTML = score
+// dot
+function clickedDot() {
+  if (turnedOn) {
+    score++;
+    scoreTrack.innerHTML = score
+  } else {
+  }
 }
 
-
-function startAnimation() {
-    game.innerHTML += '<div onclick="clickedIt()" class="absolute w-[100px] h-[100px] rounded-full bg-fun-green"></div>'
-    requestAnimationFrame(performAnimation)
-  }
-function stopAnimation() {
-    game.innerHTML = ''
-    cancelAnimationFrame(request)
-  }
-
-  function performAnimation() {
-    request = requestAnimationFrame(performAnimation)
-  }
-
-  // tailwindcss custom animations: https://tailwindcss.com/docs/animation#using-custom-values
-  // tailwindcss arbitrary values: https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values
-  // css data types: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Types
-  // points only increase when in moving state
-  // dot "pops" when clicked on
-  // inline styles/using variable for dot in innerHTML
-  // dots appear @top
-  // dots appear with random sizes
-  // dots move down from top to bottom (tailwind animation config?)
+function createDot() {
+  console.log('in create dot');
+  const span = document.createElement('div')
+  span.style.width = '100px'
+  span.style.height = '100px'
+  span.style.backgroundColor = '#00bfb2'
+  span.style.borderRadius = '50%'
+  span.style.display = 'inline-block'
+  span.addEventListener('click', clickedDot)
+  console.log(span);
+  gameArea.append(span);
+}
