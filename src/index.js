@@ -9,10 +9,6 @@ const gameArea = document.getElementById('game')
 const computedStyles = window.getComputedStyle(gameArea)
 const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''));
 const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''));
-var testElements = document.getElementsByClassName('dot');
-var testDivs = Array.prototype.filter.call(testElements, function(testElement){
-  return testElement.nodeName === 'DIV';
-});
 
 const slider = document.getElementById('game-slider')
 const output = document.getElementById('speed')
@@ -27,7 +23,7 @@ function showMenu(flag) {
 };
 
 function getSpeed() {
-  return parseInt(output.value, 10);
+  return parseInt(slider.value);
 }
 
 
@@ -82,7 +78,7 @@ function clickedDot() {
 }
 
 function createDot() {
-  const span = document.createElement('div', {id: "myId", name: "myName"})
+  const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
   const dotColor = getRandomColor(colors)
   const leftPosition = getRandomInt(0, width)
