@@ -22,6 +22,12 @@ const dots = () => {
   document.getElementsByClassName('dot')
 }
 
+let popUp = document.getElementById("menu");
+let flag = false
+function showMenu(flag) {
+  popUp.classList.toggle("hidden");
+};
+
 function getSpeed() {
   return parseInt(output.value, 10);
 }
@@ -58,7 +64,7 @@ function clickedDot() {
     let dot = this
     this.parentNode.removeChild(dot);
   } else {
-    confirm('Press start to continue popping!')
+    showMenu(true)
   }
 }
 
@@ -83,7 +89,7 @@ function createDot() {
 }
 
 function animateDots() {
-  const dots = document.querySelectorAll('.dot')git add 
+  const dots = document.querySelectorAll('.dot')
   let speed = getSpeed()
   for (let i = 0; i < dots.length; i++) {
     let positionY = parseInt(dots[i].style.top, 10)
