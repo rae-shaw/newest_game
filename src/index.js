@@ -6,8 +6,9 @@ const colors = ['#00bfb2', '#d3273e', '#e56db1', '#41b6e6']
 
 const button = document.getElementById('btn')
 const gameArea = document.getElementById('game')
-const height = gameArea.offsetHeight
-const width = gameArea.offsetWidth
+const computedStyles = window.getComputedStyle(gameArea)
+const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''));
+const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''));
 var testElements = document.getElementsByClassName('dot');
 var testDivs = Array.prototype.filter.call(testElements, function(testElement){
   return testElement.nodeName === 'DIV';
@@ -18,9 +19,6 @@ const output = document.getElementById('speed')
 const scoreTrack = document.getElementById("score")
 let turnedOn = false
 let dotValue;
-const dots = () => {
-  document.getElementsByClassName('dot')
-}
 
 let popUp = document.getElementById("menu");
 let flag = false
@@ -37,7 +35,8 @@ button.addEventListener('click', e => {
   if (!turnedOn) {
     turnedOn = true
     e.currentTarget.textContent = 'Pause'
-    interval = setInterval(game, timer);
+    interval = setInterval(createDot, timer);
+    move()
   } else {
     turnedOn = false
     e.currentTarget.textContent = 'Start'
@@ -45,9 +44,23 @@ button.addEventListener('click', e => {
   }
 })
 
-function game() {
-  createDot()
-  animateDots()
+let animateDot = requestAnimationFrame(move);
+function move() {
+  const dots = document.querySelectorAll('.dot')
+  if (turnedOn && dots) {
+    for (let i = 0; i < dots.length; i++) {
+      const computedDotSyles = window.getComputedStyle(dots[i])
+      const dotWidth = computedDotSyles.getPropertyValue('top');
+      let positionY = parseInt(dots[i].style.top, 10)
+      velocity = positionY += speed;
+
+      if (positionY > gameArea) {
+        removeEl(dots[i]);
+      }
+      dots[i].style.top = velocity + "px";
+    }
+  }
+    animateDot = requestAnimationFrame(move);
 }
 
 // slider
@@ -70,7 +83,7 @@ function clickedDot() {
 
 function createDot() {
   const span = document.createElement('div', {id: "myId", name: "myName"})
-  const dotSize = getRandomInt(10, 100).toString()
+  const dotSize = getRandomInt(10, 100)
   const dotColor = getRandomColor(colors)
   const leftPosition = getRandomInt(0, width)
   const topPosition = 0 - dotSize - getSpeed()
@@ -85,23 +98,6 @@ function createDot() {
   span.style.left = `${leftPosition}px`
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
-  console.log(span);
-}
-
-function animateDots() {
-  const dots = document.querySelectorAll('.dot')
-  let speed = getSpeed()
-  for (let i = 0; i < dots.length; i++) {
-    let positionY = parseInt(dots[i].style.top, 10)
-    let velocity = positionY += speed
-    
-    if (positionY > height) {
-      let dot = this
-      this.parentNode.removeChild(dot);
-    }
-
-    dots[i].style.top = velocity + "px";
-  }
 }
 
 function getRandomColor(arr) {
