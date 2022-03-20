@@ -1,0 +1,13 @@
+@keyframes falling-dot {
+  0% {
+    top: 0;
+  }
+
+  99.99% {
+    top: 1000px;
+  }
+
+  100% {
+    display: none;
+  }
+}

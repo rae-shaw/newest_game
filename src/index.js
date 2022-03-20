@@ -45,15 +45,7 @@ function move() {
   const dots = document.querySelectorAll('.dot')
   if (turnedOn && dots) {
     for (let i = 0; i < dots.length; i++) {
-      const computedDotSyles = window.getComputedStyle(dots[i])
-      const dotWidth = computedDotSyles.getPropertyValue('top');
-      let positionY = parseInt(dots[i].style.top, 10)
-      velocity = positionY += speed;
-
-      if (positionY > gameArea) {
-        removeEl(dots[i]);
-      }
-      dots[i].style.top = velocity + "px";
+      dots[i].style.animationPlayState = "running"
     }
   }
     animateDot = requestAnimationFrame(move);
@@ -90,8 +82,13 @@ function createDot() {
   span.style.height = `${dotSize}px`
   span.style.backgroundColor = dotColor
   span.style.borderRadius = '50%'
+  span.style.position = 'absolute'
   span.style.top = `${topPosition}px`
   span.style.left = `${leftPosition}px`
+  span.style.animation = "falling-dot"
+  span.style.animationDuration =
+    gameArea.offsetHeight / parseInt(slider.value)
+  span.style.animationTimingFunction = "linear";
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
 }
