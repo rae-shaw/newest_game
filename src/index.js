@@ -42,13 +42,8 @@ button.addEventListener('click', e => {
 
 let animateDot = requestAnimationFrame(move);
 function move() {
-  const dots = document.querySelectorAll('.dot')
-  if (turnedOn && dots) {
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].style.animationPlayState = "running"
-    }
-  }
-    animateDot = requestAnimationFrame(move);
+  animateDots()
+  animateDot = requestAnimationFrame(move);
 }
 
 // slider
@@ -77,20 +72,31 @@ function createDot() {
   const topPosition = 0 - dotSize - getSpeed()
   dotValue = calcValue(dotSize)
 
-  span.setAttribute('class', 'dot')
+  span.classList.add('dot')
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
   span.style.backgroundColor = dotColor
-  span.style.borderRadius = '50%'
-  span.style.position = 'absolute'
   span.style.top = `${topPosition}px`
   span.style.left = `${leftPosition}px`
-  span.style.animation = "falling-dot"
-  span.style.animationDuration =
-    gameArea.offsetHeight / parseInt(slider.value)
-  span.style.animationTimingFunction = "linear";
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
+}
+
+function animateDots() {
+  console.log('in animate dots')
+ let dots = document.querySelectorAll('.dot')
+  const playgroundHeight = gameArea.offsetHeight
+  const speed = getSpeed();
+
+  for (var i = 0; i < dots.length; i++) {
+    var positionY = parseInt(dots[i].style.top, 10),
+        velocity  = positionY += speed;
+
+    if (positionY > playgroundHeight) {
+      removeEl(dots[i]);
+    }
+    dots[i].style.top = velocity + "px";
+  }
 }
 
 function getRandomColor(arr) {
@@ -105,6 +111,10 @@ function getRandomInt(min, max) {
 
 function calcValue(size) {
   return Math.round(11 - (size * 0.1))
+}
+
+function removeEl(el) {
+  el.parentNode.removeChild(el);
 }
 
 

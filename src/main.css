@@ -1,13 +1,9 @@
-@keyframes falling-dot {
-  0% {
-    top: 0;
-  }
-
-  99.99% {
-    top: 1000px;
-  }
-
-  100% {
-    display: none;
-  }
+.dot {
+  position: absolute;
+  z-index: 5;
+  top: 0px;
+  border-radius: 50%;
+  animation: falling-dots;
+  animation-timing-function: linear;
+  animation-play-state: running;
 }
