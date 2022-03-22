@@ -12,7 +12,7 @@ const height = parseInt(computedStyles.getPropertyValue('height').replace('px', 
 const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''));
 
 const slider = document.getElementById('game-slider')
-const output = document.getElementById('speed')
+const sliderLabel = document.getElementById('speed')
 const scoreTrack = document.getElementById("score")
 let turnedOn = false
 let dotValue;
@@ -24,13 +24,20 @@ function showMenu(flag) {
 };
 
 function getSpeed() {
-  return parseInt(slider.value);
+  return parseInt(slider.value)
+}
+
+// slider
+function setSpeed() {
+  sliderLabel.innerHTML = 'Speed: ' + getSpeed();
 }
 
 function move() {
   animateDots()
   request = requestAnimationFrame(move);
 }
+
+slider.addEventListener('change', setSpeed);
 
 button.addEventListener('click', e => {
   if (!turnedOn) {
@@ -46,14 +53,6 @@ button.addEventListener('click', e => {
   }
 })
 
-
-
-
-// slider
-output.innerHTML = slider.value;
-slider.onInput = function() {
-  output.innerHTML = this.value;
-}
 
 // dot
 function clickedDot() {
@@ -72,7 +71,6 @@ function createDot() {
   const dotSize = getRandomInt(10, 100)
   const dotColor = getRandomColor(colors)
   const leftPosition = getRandomInt(0, width)
-  const topPosition = 0 - dotSize - getSpeed()
   dotValue = calcValue(dotSize)
 
   span.setAttribute('class', 'dot')
