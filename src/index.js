@@ -3,6 +3,7 @@ let score = 0
 let interval = 0
 let timer = 1000
 const colors = ['#00bfb2', '#d3273e', '#e56db1', '#41b6e6']
+let request
 
 const button = document.getElementById('btn')
 const gameArea = document.getElementById('game')
@@ -26,25 +27,27 @@ function getSpeed() {
   return parseInt(slider.value);
 }
 
+function move() {
+  animateDots()
+  request = requestAnimationFrame(move);
+}
 
 button.addEventListener('click', e => {
   if (!turnedOn) {
     turnedOn = true
     e.currentTarget.textContent = 'Pause'
-    interval = setInterval(createDot, timer);
-    move()
+    interval = setInterval(createDot, timer)
+    request = requestAnimationFrame(move)
   } else {
     turnedOn = false
     e.currentTarget.textContent = 'Start'
-    clearInterval(interval);
+    clearInterval(interval)
+    request = cancelAnimationFrame(request)
   }
 })
 
-let animateDot = requestAnimationFrame(move);
-function move() {
-  animateDots()
-  animateDot = requestAnimationFrame(move);
-}
+
+
 
 // slider
 output.innerHTML = slider.value;
