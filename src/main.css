@@ -1,9 +1,0 @@
-.dot {
-  position: absolute;
-  z-index: 5;
-  top: 0px;
-  border-radius: 50%;
-  animation: falling-dots;
-  animation-timing-function: linear;
-  animation-play-state: running;
-}

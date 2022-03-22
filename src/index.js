@@ -75,19 +75,20 @@ function createDot() {
   const topPosition = 0 - dotSize - getSpeed()
   dotValue = calcValue(dotSize)
 
-  span.classList.add('dot')
+  span.setAttribute('class', 'dot')
+  span.style.borderRadius = '50%'
+  span.style.position = 'absolute'
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
   span.style.backgroundColor = dotColor
-  span.style.top = `${topPosition}px`
+  span.style.top = '0px'
   span.style.left = `${leftPosition}px`
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
 }
 
 function animateDots() {
-  console.log('in animate dots')
- let dots = document.querySelectorAll('.dot')
+  let dots = document.querySelectorAll('.dot')
   const playgroundHeight = gameArea.offsetHeight
   const speed = getSpeed();
 
