@@ -24,12 +24,14 @@ function showMenu(flag) {
 };
 
 function getSpeed() {
-  return parseInt(slider.value)
+  const speedInt = parseInt(slider.value)
+  const speed = speedInt / 10
+  return speed
 }
 
 // slider
 function setSpeed() {
-  sliderLabel.innerHTML = 'Speed: ' + getSpeed();
+  sliderLabel.innerHTML = `Speed: ${slider.value}`
 }
 
 function move() {
@@ -43,7 +45,7 @@ button.addEventListener('click', e => {
   if (!turnedOn) {
     turnedOn = true
     e.currentTarget.textContent = 'Pause'
-    interval = setInterval(createDot, timer)
+    interval = setInterval(createDot, 1000)
     request = requestAnimationFrame(move)
   } else {
     turnedOn = false
@@ -53,17 +55,17 @@ button.addEventListener('click', e => {
   }
 })
 
-
 // dot
 function clickedDot() {
   if (turnedOn) {
     score += dotValue;
     scoreTrack.innerHTML = score
     let dot = this
-    this.parentNode.removeChild(dot);
+    this.remove();
   } else {
     showMenu(true)
   }
+
 }
 
 function createDot() {
@@ -74,31 +76,31 @@ function createDot() {
   dotValue = calcValue(dotSize)
 
   span.setAttribute('class', 'dot')
+  span.classList.add("dotty");
   span.style.borderRadius = '50%'
   span.style.position = 'absolute'
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
   span.style.backgroundColor = dotColor
-  span.style.top = '0px'
+  span.style.top = '-100px'
   span.style.left = `${leftPosition}px`
+  span.style.overflow = 'inherited'
+  span.style.transition =  'opacity 0.5s ease'
   span.addEventListener('click', clickedDot)
   gameArea.append(span);
 }
 
+let bottomOfGameScreen = height * 1.5;
 function animateDots() {
-  let dots = document.querySelectorAll('.dot')
-  const playgroundHeight = gameArea.offsetHeight
-  const speed = getSpeed();
-
-  for (var i = 0; i < dots.length; i++) {
-    var positionY = parseInt(dots[i].style.top, 10),
-        velocity  = positionY += speed;
-
-    if (positionY > playgroundHeight) {
-      removeEl(dots[i]);
+  let pixelIncrement = getSpeed()
+  let dots = document.querySelectorAll(".dot")
+  dots.forEach((dot) => {
+    let currentPosition = parseInt(dot.style.top.slice(0, -2));
+    if (currentPosition > bottomOfGameScreen) {
+      dot.remove();
     }
-    dots[i].style.top = velocity + "px";
-  }
+    dot.style.top = `${pixelIncrement + currentPosition}px`;
+  });
 }
 
 function getRandomColor(arr) {
@@ -114,9 +116,3 @@ function getRandomInt(min, max) {
 function calcValue(size) {
   return Math.round(11 - (size * 0.1))
 }
-
-function removeEl(el) {
-  el.parentNode.removeChild(el);
-}
-
-
