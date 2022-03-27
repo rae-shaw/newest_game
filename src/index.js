@@ -1,7 +1,5 @@
-let i = 0
 let score = 0
 let interval = 0
-let timer = 1000
 let request
 
 const button = document.getElementById('btn')
@@ -28,7 +26,7 @@ function getSpeed() {
 }
 
 // slider
-function setSpeed() {
+function setSpeedText() {
   sliderLabel.innerHTML = `Speed: ${slider.value}`
 }
 
@@ -37,7 +35,7 @@ function move() {
   request = requestAnimationFrame(move);
 }
 
-slider.addEventListener('change', setSpeed);
+slider.addEventListener('change', setSpeedText);
 
 button.addEventListener('click', e => {
   if (!turnedOn) {
@@ -71,7 +69,6 @@ function createDot() {
   const dotValue = calcValue(dotSize)
 
   span.setAttribute('class', 'dot')
-  span.classList.add("dotty");
   span.style.borderRadius = '50%'
   span.style.position = 'absolute'
   span.style.width = `${dotSize}px`
