@@ -54,15 +54,14 @@ button.addEventListener('click', e => {
 })
 
 // dot
-function clickedDot(val) {
+function clickedDot(el, val) {
   if (turnedOn) {
     score += val
     scoreTrack.innerHTML = score
-    this.remove();
+    el.remove();
   } else {
     showMenu(true)
   }
-
 }
 
 function createDot() {
@@ -84,14 +83,13 @@ function createDot() {
   span.style.cursor = 'pointer'
   span.style.left = `${leftPosition}px`
   span.style.overflow = 'inherited'
-  span.style.transition =  'opacity 0.5s ease'
-  span.addEventListener('click', function () { clickedDot(dotValue) }, 'false')
+  span.addEventListener('click', function () { clickedDot(this, dotValue) }, 'false')
   gameArea.append(span);
 }
 
 let bottomOfGameScreen = height * 1.5;
 function animateDots() {
-  let pixelIncrement = getSpeed()
+  const pixelIncrement = slider.value/10
   let dots = document.querySelectorAll(".dot")
   dots.forEach((dot) => {
     let currentPosition = parseInt(dot.style.top.slice(0, -2));
@@ -101,10 +99,6 @@ function animateDots() {
     dot.style.top = `${pixelIncrement + currentPosition}px`;
   });
 }
-
-function getRandomColor(arr) {
-   return arr[Math.floor(Math.random() * arr.length)]
- }
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
