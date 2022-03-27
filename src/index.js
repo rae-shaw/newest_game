@@ -2,7 +2,6 @@ let i = 0
 let score = 0
 let interval = 0
 let timer = 1000
-const colors = ['#00bfb2', '#d3273e', '#e56db1', '#41b6e6']
 let request
 
 const button = document.getElementById('btn')
@@ -71,7 +70,6 @@ function clickedDot() {
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
-  const dotColor = getRandomColor(colors)
   const leftPosition = getRandomInt(0, width)
   dotValue = calcValue(dotSize)
 
@@ -81,8 +79,11 @@ function createDot() {
   span.style.position = 'absolute'
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
-  span.style.backgroundColor = dotColor
+  span.style.backgroundColor = '#FB6970'
+  span.style.borderColor = '#FDB876'
+  span.style.borderWidth = '2px'
   span.style.top = '-100px'
+  span.style.cursor = 'pointer'
   span.style.left = `${leftPosition}px`
   span.style.overflow = 'inherited'
   span.style.transition =  'opacity 0.5s ease'
