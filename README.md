@@ -1,10 +1,17 @@
 # Dot Game
 
+## Start Project
+
+```
+yarn build || yarn build:watch
+yarn start
+```
+
+## Guidelines for Completing the Exercise
+
 The goal of this exercise is to create a game. In the game, dots move from the top to the bottom of the screen. A player tries to click on the dots, and receives points when they are successful.
 
 ![mockup](https://cdn.gomix.com/84ca8f35-cd1c-4d74-ad6f-f1f108b5b85a%2Fdot-game-with-banner.png)
-
-## Guidelines for Completing the Exercise
 
 - Your application should work in current Chrome.
 - You can edit any file in the project, and add any assets you require (see below).

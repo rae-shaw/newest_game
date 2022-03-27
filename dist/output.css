@@ -746,6 +746,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
+.shadow-inner{
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .hover\:bg-slate-300:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));

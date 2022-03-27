@@ -9,7 +9,7 @@
   "main": "app.js",
   "scripts": {
     "build:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
     "start": "live-server"
   },
   "repository": "https://github.com/rae-shaw/newest_game.git",
