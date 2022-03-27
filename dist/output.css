@@ -482,12 +482,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.top-0{
-  top: 0px;
+.right-60{
+  right: 15rem;
+}
+
+.-bottom-6{
+  bottom: -1.5rem;
+}
+
+.top-5{
+  top: 1.25rem;
 }
 
 .right-0{
   right: 0px;
+}
+
+.top-0{
+  top: 0px;
 }
 
 .top-8{
@@ -496,58 +508,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .right-8{
   right: 2rem;
-}
-
-.left-1{
-  left: 0.25rem;
-}
-
-.left-3{
-  left: 0.75rem;
-}
-
-.right-40{
-  right: 10rem;
-}
-
-.right-80{
-  right: 20rem;
-}
-
-.top-3{
-  top: 0.75rem;
-}
-
-.top-4{
-  top: 1rem;
-}
-
-.top-5{
-  top: 1.25rem;
-}
-
-.bottom-0{
-  bottom: 0px;
-}
-
-.bottom-4{
-  bottom: 1rem;
-}
-
-.-bottom-4{
-  bottom: -1rem;
-}
-
-.-bottom-5{
-  bottom: -1.25rem;
-}
-
-.-bottom-6{
-  bottom: -1.5rem;
-}
-
-.right-60{
-  right: 15rem;
 }
 
 .z-40{
@@ -571,16 +531,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.25rem;
 }
 
-.mt-6{
-  margin-top: 1.5rem;
-}
-
-.mb-2{
-  margin-bottom: 0.5rem;
-}
-
 .mb-5{
   margin-bottom: 1.25rem;
+}
+
+.mt-6{
+  margin-top: 1.5rem;
 }
 
 .flex{
@@ -591,20 +547,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.h-1{
-  height: 0.25rem;
-}
-
-.h-full{
-  height: 100%;
-}
-
 .h-0\.5{
   height: 0.125rem;
 }
 
 .h-0{
   height: 0px;
+}
+
+.h-full{
+  height: 100%;
 }
 
 .min-h-\[50vh\]{
@@ -615,16 +567,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 6rem;
 }
 
+.w-3\/4{
+  width: 75%;
+}
+
 .w-full{
   width: 100%;
 }
 
 .w-96{
   width: 24rem;
-}
-
-.w-3\/4{
-  width: 75%;
 }
 
 .max-w-lg{
@@ -713,16 +665,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 0.8;
 }
 
-.p-2{
-  padding: 0.5rem;
-}
-
-.p-5{
-  padding: 1.25rem;
-}
-
 .p-4{
   padding: 1rem;
+}
+
+.p-2{
+  padding: 0.5rem;
 }
 
 .py-2{
@@ -753,6 +701,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-family: Quicksand;
 }
 
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -763,33 +716,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.5rem;
 }
 
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.text-6xl{
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
-.text-5xl{
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .font-extrabold{
   font-weight: 800;
+}
+
+.font-thin{
+  font-weight: 100;
 }
 
 .font-bold{
@@ -798,10 +730,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .font-semibold{
   font-weight: 600;
-}
-
-.font-thin{
-  font-weight: 100;
 }
 
 .leading-7{

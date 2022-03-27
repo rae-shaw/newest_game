@@ -14,7 +14,6 @@ const slider = document.getElementById('game-slider')
 const sliderLabel = document.getElementById('speed')
 const scoreTrack = document.getElementById("score")
 let turnedOn = false
-let dotValue;
 
 let popUp = document.getElementById("menu");
 let flag = false
@@ -55,11 +54,10 @@ button.addEventListener('click', e => {
 })
 
 // dot
-function clickedDot() {
+function clickedDot(val) {
   if (turnedOn) {
-    score += dotValue;
+    score += val
     scoreTrack.innerHTML = score
-    let dot = this
     this.remove();
   } else {
     showMenu(true)
@@ -71,7 +69,7 @@ function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
   const leftPosition = getRandomInt(0, width)
-  dotValue = calcValue(dotSize)
+  const dotValue = calcValue(dotSize)
 
   span.setAttribute('class', 'dot')
   span.classList.add("dotty");
@@ -87,7 +85,7 @@ function createDot() {
   span.style.left = `${leftPosition}px`
   span.style.overflow = 'inherited'
   span.style.transition =  'opacity 0.5s ease'
-  span.addEventListener('click', clickedDot)
+  span.addEventListener('click', function () { clickedDot(dotValue) }, 'false')
   gameArea.append(span);
 }
 
@@ -115,5 +113,17 @@ function getRandomInt(min, max) {
 }
 
 function calcValue(size) {
-  return Math.round(11 - (size * 0.1))
+  if (size <= 20) {
+    return 10
+  }
+  if (size <= 40) {
+    return 7
+  }
+  if (size <= 60) {
+    return 5
+  }
+  if (size <= 80) {
+    return 3
+  }
+  return 1
 }
