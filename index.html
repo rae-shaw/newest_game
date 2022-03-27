@@ -10,20 +10,20 @@
 </head>
 <body class="mt-12 bg-sky-300">
   <main class="mx-auto bg-slate-300 rounded max-w-lg font-sans font-extrabold">
-    <section class="rounded flex-row bg-slate-300 p-2">
+    <section class="rounded flex-row bg-slate-300 p-4">
       <div class="mb-4">
         <span class="mb-1 p-2">
           <div class="relative">
-          <p class="absolute left-">
-            Score: <span id="score"></span>
-          <p>
+            <p class="absolute right-60 -bottom-6 text-5xl font-thin">
+              <span id="score">0</span>
+            </p>
           </div>
           <div class="relative">
             <button 
             id="btn" 
             class="
             absolute 
-            top-0 
+            top-5
             right-0 
             w-24 fontblack
             hover:bg-slate-300
@@ -41,9 +41,9 @@
           </div>
         </span>
       </div>
-      <div class="relative p-2">
-        <input id="game-slider" class="rounded-lg appearance-none bg-special-purple h-0.5 w-full" type="range" min="10" max="100" value="10" />
-        <span id="speed">Speed: 10</span>
+      <div class="flex flex-col p-2">
+        <input id="game-slider" name="game-slider" class="mb-5 rounded-lg appearance-none bg-special-purple h-0.5 w-3/4" type="range" min="10" max="100" value="10" />
+        <label id="speed" for="game-slider">Speed: 10</label>
       </div>
     </section>
     <section id="game" class="relative bg-blue-800 rounded p-2 mb-1 min-h-[50vh] w-full overflow-hidden">
