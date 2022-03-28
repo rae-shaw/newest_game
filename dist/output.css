@@ -634,7 +634,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-special-red{
   --tw-bg-opacity: 1;
-  background-color: rgb(255 80 117 / var(--tw-bg-opacity));
+  background-color: rgb(250 32 78 / var(--tw-bg-opacity));
 }
 
 .bg-special-purple{
@@ -691,6 +691,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1;
 }
 
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .font-extrabold{
   font-weight: 800;
 }
@@ -705,7 +710,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-special-red{
   --tw-text-opacity: 1;
-  color: rgb(255 80 117 / var(--tw-text-opacity));
+  color: rgb(250 32 78 / var(--tw-text-opacity));
 }
 
 .text-white{

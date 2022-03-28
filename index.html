@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Dot Game</title>
   <meta charset="UTF-8">
@@ -14,25 +14,27 @@
       <div>
         <span class="mb-1 p-2">
           <div class="relative">
-            <p class="absolute right-60 -bottom-6 text-5xl text-special-red  font-thin">
-              <span id="score">0</span>
-            </p>
+            <h1 class="absolute right-60 -bottom-6 text-5xl text-special-red  font-thin">
+              <span id="score" aria-live="polite">0</span>
+            </h1>
           </div>
           <div class="relative">
             <button 
-            id="btn" 
+            id="btn"
+            type="button" 
             class="
-            absolute 
+            absolute
             top-5
             right-0 
-            w-24 fontblack
+            w-24
+            text-lg
             hover:bg-white
             bg-special-red 
             border-2
             hover:text-special-purple
             hover:border-special-purple
             text-white
-            font-bold
+            font-extrabold
             py-2
             px-4
             shadow-inner
@@ -43,14 +45,14 @@
         </span>
       </div>
       <div class="flex flex-col p-2">
-        <input id="game-slider" name="game-slider" class="mb-5 rounded-lg appearance-none bg-special-purple h-0.5 w-3/4" type="range" min="10" max="100" value="10" />
+        <input id="game-slider" role="slider" name="game-slider" class="mb-5 rounded-lg appearance-none bg-special-purple h-0.5 w-3/4" type="range" min="10" max="100" value="10" />
         <label id="speed" class="text-blue-600" for="game-slider">SPEED: 10</label>
       </div>
     </section>
     <section id="game" class="relative bg-special-purple min-h-[50vh] w-full overflow-hidden">
       <div class="flex justify-center items-center">
-        <div id="menu" class="animate-right-in w-full min-h-[50vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
-          <div class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">
+        <div id="menu" role="dialog" aria-labelledby="modal-title" class="animate-right-in w-full min-h-[50vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
+          <div id="modal-title" class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">
               GAME PAUSED
           </div>
         </div>

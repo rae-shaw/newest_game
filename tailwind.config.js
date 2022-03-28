@@ -11,7 +11,7 @@ module.exports = {
       'background-grey': '#d0d3d4',
       'special-purple': '#772AFB',
       'special-orange': '#FDB876',
-      'special-red': '#FF5075',
+      'special-red': '#fa204e',
       ...colors,
     },
     backgroundImage: {
