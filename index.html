@@ -8,13 +8,13 @@
   <link href="/dist/output.css" rel="stylesheet">
 
 </head>
-<body class="mt-12 bg-sky-300">
-  <main class="mx-auto bg-slate-300 max-w-lg font-sans rounded font-extrabold">
-    <section class="flex-row bg-slate-300 p-4">
+<body class="mt-12 bg-white">
+  <main class="mx-auto bg-white max-w-lg font-sans rounded border-2 border-special-purple font-extrabold">
+    <section class="flex-row bg-white-300 p-4">
       <div class="mb-4">
         <span class="mb-1 p-2">
           <div class="relative">
-            <p class="absolute right-60 -bottom-6 text-5xl font-thin">
+            <p class="absolute right-60 -bottom-6 text-5xl text-rose-400  font-thin">
               <span id="score">0</span>
             </p>
           </div>
@@ -26,32 +26,32 @@
             top-5
             right-0 
             w-24 fontblack
-            hover:bg-slate-300
-            bg-rose-400 
+            hover:bg-white
+            bg-special-red 
             border-2
             border-special-purple
             hover:text-special-purple
-            text-slate-300
+            text-white
             font-bold
             py-2
             px-4
             shadow-inner
             rounded">
-              Start
+              START
             </button>
           </div>
         </span>
       </div>
       <div class="flex flex-col p-2">
         <input id="game-slider" name="game-slider" class="mb-5 rounded-lg appearance-none bg-special-purple h-0.5 w-3/4" type="range" min="10" max="100" value="10" />
-        <label id="speed" for="game-slider">Speed: 10</label>
+        <label id="speed" class="text-blue-600" for="game-slider">SPEED: 10</label>
       </div>
     </section>
-    <section id="game" class="relative bg-blue-800 mb-1 min-h-[50vh] w-full overflow-hidden">
+    <section id="game" class="relative bg-special-purple mb-1 min-h-[50vh] w-full overflow-hidden">
       <div class="flex justify-center items-center">
         <div id="menu" class="animate-right-in w-full min-h-[50vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
           <div class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">
-              Paused
+              PAUSED
           </div>
         </div>
       </div>

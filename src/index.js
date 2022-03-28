@@ -1,63 +1,73 @@
+//_______________________________________________________//
+//   initatiate variables used to track  game elements   //
+//_______________________________________________________//
+
+// track score, start at 0
 let score = 0
+
+// track interval for dot creation
 let interval = 0
-let request
 
-const button = document.getElementById('btn')
-const gameArea = document.getElementById('game')
-const computedStyles = window.getComputedStyle(gameArea)
-const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''));
-const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''));
-
-const slider = document.getElementById('game-slider')
-const sliderLabel = document.getElementById('speed')
-const scoreTrack = document.getElementById("score")
+// track whether the game is running or not
 let turnedOn = false
 
-let popUp = document.getElementById("menu");
+// tracks ///////////////////////
+let request
 
-function getSpeed() {
-  const speedInt = parseInt(slider.value)
-  const speed = speedInt / 10
-  return speed
-}
+// get the elements on the screen to use and manipulate
+const gameArea = document.getElementById('game')
+const button = document.getElementById('btn')
+const popUp = document.getElementById("menu");
+const scoreTrack = document.getElementById("score")
+const slider = document.getElementById('game-slider')
+const sliderLabel = document.getElementById('speed')
 
-// slider
-function setSpeedText() {
-  sliderLabel.innerHTML = `Speed: ${slider.value}`
-}
+// compute values to use in dot creation and dot animation
+const computedStyles = window.getComputedStyle(gameArea)
+const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''))
+const bottomOfGameScreen = height * 1.5;
+const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''))
 
-function move() {
-  animateDots()
-  request = requestAnimationFrame(move);
-}
 
-slider.addEventListener('change', setSpeedText);
-
+// on click action
 button.addEventListener('click', e => {
+  // when the button is clicked to start the game, the following happens:
   if (!turnedOn) {
     turnedOn = true
-    e.currentTarget.textContent = 'Pause'
+    e.currentTarget.textContent = 'PAUSE'
     interval = setInterval(createDot, 1000)
     request = requestAnimationFrame(move)
     popUp.classList.add("hidden")
   } else {
+    // when the button is clicked to pause the game, the following happens:
     turnedOn = false
-    e.currentTarget.textContent = 'Start'
+    e.currentTarget.textContent = 'START'
     clearInterval(interval)
     request = cancelAnimationFrame(request)
     popUp.classList.remove("hidden")
   }
 })
 
-// dot
-function clickedDot(el, val) {
-  if (turnedOn) {
-    score += val
-    scoreTrack.innerHTML = score
-    el.remove();
-  }
+// recursive function using requestAnimationFrame to slide the dots down the screen
+function move() {
+  animateDots()
+  request = requestAnimationFrame(move);
 }
 
+//_______________________________________________________//
+//                  slider                               //
+//_______________________________________________________//
+slider.addEventListener('change', setSpeedText);
+
+function setSpeedText() {
+  sliderLabel.innerHTML = `Speed: ${slider.value}`
+}
+
+//_______________________________________________________//
+//                   dot                                 //
+//_______________________________________________________//
+
+// create a dot
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
@@ -70,8 +80,6 @@ function createDot() {
   span.style.width = `${dotSize}px`
   span.style.height = `${dotSize}px`
   span.style.backgroundColor = '#FB6970'
-  span.style.borderColor = '#FDB876'
-  span.style.borderWidth = '2px'
   span.style.top = '-100px'
   span.style.cursor = 'pointer'
   span.style.left = `${leftPosition}px`
@@ -80,7 +88,16 @@ function createDot() {
   gameArea.append(span);
 }
 
-let bottomOfGameScreen = height * 1.5;
+// action for when a dot is clicked
+function clickedDot(el, val) {
+  if (turnedOn) {
+    score += val
+    scoreTrack.innerHTML = score
+    el.remove();
+  }
+}
+
+// move dots down the screen
 function animateDots() {
   const pixelIncrement = slider.value/10
   let dots = document.querySelectorAll(".dot")
@@ -93,12 +110,7 @@ function animateDots() {
   });
 }
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); 
-}
-
+// caculate the value of dot based on the size
 function calcValue(size) {
   if (size <= 20) {
     return 10
@@ -113,4 +125,11 @@ function calcValue(size) {
     return 3
   }
   return 1
+}
+
+// helper function to get a random size for the 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); 
 }
