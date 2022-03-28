@@ -8,13 +8,13 @@
   <link href="/dist/output.css" rel="stylesheet">
 
 </head>
-<body class="mt-12 bg-white">
+<body class="mt-12 bg-90s-pattern">
   <main class="mx-auto bg-white max-w-lg font-sans rounded border-2 border-special-purple font-extrabold">
     <section class="flex-row bg-white-300 p-4">
-      <div class="mb-4">
+      <div>
         <span class="mb-1 p-2">
           <div class="relative">
-            <p class="absolute right-60 -bottom-6 text-5xl text-rose-400  font-thin">
+            <p class="absolute right-60 -bottom-6 text-5xl text-special-red  font-thin">
               <span id="score">0</span>
             </p>
           </div>
@@ -29,8 +29,8 @@
             hover:bg-white
             bg-special-red 
             border-2
-            border-special-purple
             hover:text-special-purple
+            hover:border-special-purple
             text-white
             font-bold
             py-2
@@ -47,16 +47,17 @@
         <label id="speed" class="text-blue-600" for="game-slider">SPEED: 10</label>
       </div>
     </section>
-    <section id="game" class="relative bg-special-purple mb-1 min-h-[50vh] w-full overflow-hidden">
+    <section id="game" class="relative bg-special-purple min-h-[50vh] w-full overflow-hidden">
       <div class="flex justify-center items-center">
         <div id="menu" class="animate-right-in w-full min-h-[50vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
           <div class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">
-              PAUSED
+              GAME PAUSED
           </div>
         </div>
       </div>
     </section>
   </main>
+</div>
   <script src="src/index.js"></script>
 </body>
 </html>

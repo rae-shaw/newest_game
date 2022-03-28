@@ -14,6 +14,9 @@ module.exports = {
       'special-red': '#FF5075',
       ...colors,
     },
+    backgroundImage: {
+      '90s-pattern': 'url("/src/assets/shape_pattern.png")',
+    },
     extend: {
       fontFamily: {
         sans: ['Quicksand'],

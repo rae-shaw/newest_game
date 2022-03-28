@@ -17,7 +17,7 @@ let request
 // get the elements on the screen to use and manipulate
 const gameArea = document.getElementById('game')
 const button = document.getElementById('btn')
-const popUp = document.getElementById("menu");
+const popUp = document.getElementById("menu")
 const scoreTrack = document.getElementById("score")
 const slider = document.getElementById('game-slider')
 const sliderLabel = document.getElementById('speed')
@@ -51,14 +51,13 @@ button.addEventListener('click', e => {
 // recursive function using requestAnimationFrame to slide the dots down the screen
 function move() {
   animateDots()
-  request = requestAnimationFrame(move);
+  request = requestAnimationFrame(move)
 }
 
 //_______________________________________________________//
 //                  slider                               //
 //_______________________________________________________//
-slider.addEventListener('change', setSpeedText);
-
+slider.addEventListener('change', setSpeedText)
 function setSpeedText() {
   sliderLabel.innerHTML = `Speed: ${slider.value}`
 }
@@ -66,7 +65,6 @@ function setSpeedText() {
 //_______________________________________________________//
 //                   dot                                 //
 //_______________________________________________________//
-
 // create a dot
 function createDot() {
   const span = document.createElement('div')
@@ -85,7 +83,7 @@ function createDot() {
   span.style.left = `${leftPosition}px`
   span.style.overflow = 'inherited'
   span.addEventListener('click', function () { clickedDot(this, dotValue) }, 'false')
-  gameArea.append(span);
+  gameArea.append(span)
 }
 
 // action for when a dot is clicked
@@ -93,7 +91,7 @@ function clickedDot(el, val) {
   if (turnedOn) {
     score += val
     scoreTrack.innerHTML = score
-    el.remove();
+    el.remove()
   }
 }
 
@@ -102,11 +100,11 @@ function animateDots() {
   const pixelIncrement = slider.value/10
   let dots = document.querySelectorAll(".dot")
   dots.forEach((dot) => {
-    let currentPosition = parseInt(dot.style.top.slice(0, -2));
+    let currentPosition = parseInt(dot.style.top.slice(0, -2))
     if (currentPosition > bottomOfGameScreen) {
-      dot.remove();
+      dot.remove()
     }
-    dot.style.top = `${pixelIncrement + currentPosition}px`;
+    dot.style.top = `${pixelIncrement + currentPosition}px`
   });
 }
 
@@ -129,7 +127,7 @@ function calcValue(size) {
 
 // helper function to get a random size for the 
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+  min = Math.ceil(min)
+  max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1) + min); 
 }
