@@ -30,104 +30,159 @@ const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''
 
 
 // on click action
-button.addEventListener('click', e => {
-  // when the button is clicked to start the game, the following happens:
-  if (!turnedOn) {
-    turnedOn = true
-    e.currentTarget.textContent = 'PAUSE'
-    interval = setInterval(createDot, 1000)
-    request = requestAnimationFrame(move)
-    popUp.classList.add("hidden")
-  } else {
-    // when the button is clicked to pause the game, the following happens:
-    turnedOn = false
-    e.currentTarget.textContent = 'START'
-    clearInterval(interval)
-    request = cancelAnimationFrame(request)
-    popUp.classList.remove("hidden")
-  }
-})
+// button.addEventListener('click', e => {
+//   // when the button is clicked to start the game, the following happens:
+//   if (!turnedOn) {
+//     turnedOn = true
+//     e.currentTarget.textContent = 'PAUSE'
+//     // request = requestAnimationFrame(move)
+//     popUp.classList.add("hidden")
+//   } else {
+//     // when the button is clicked to pause the game, the following happens:
+//     turnedOn = false
+//     e.currentTarget.textContent = 'START'
+//     // request = cancelAnimationFrame(request)
+//     popUp.classList.remove("hidden")
+//   }
+// })
 
 // recursive function using requestAnimationFrame to slide the dots down the screen
-function move() {
-  animateDots()
-  request = requestAnimationFrame(move)
-}
+// function move() {
+//   animateDots()
+//   request = requestAnimationFrame(move)
+// }
 
 //_______________________________________________________//
 //                  slider                               //
 //_______________________________________________________//
-slider.addEventListener('change', setSpeedText)
-function setSpeedText() {
-  sliderLabel.innerHTML = `Speed: ${slider.value}`
-}
+// slider.addEventListener('change', setSpeedText)
+// function setSpeedText() {
+//   sliderLabel.innerHTML = `Speed: ${slider.value}`
+// }
 
 //_______________________________________________________//
 //                   dot                                 //
 //_______________________________________________________//
 // create a dot
-function createDot() {
-  const span = document.createElement('div')
-  const dotSize = getRandomInt(10, 100)
-  const leftPosition = getRandomInt(0, width)
-  const dotValue = calcValue(dotSize)
+// function createDot() {
+//   console.log('createDot')
+//   const span = document.createElement('div')
+//   const dotSize = getRandomInt(10, 100)
+//   const leftPosition = getRandomInt(0, width)
+//   const dotValue = calcValue(dotSize)
 
-  span.setAttribute('class', 'dot')
-  span.style.borderRadius = '50%'
-  span.style.position = 'absolute'
-  span.style.width = `${dotSize}px`
-  span.style.height = `${dotSize}px`
-  span.style.backgroundColor = '#FB6970'
-  span.style.top = '-100px'
-  span.style.cursor = 'pointer'
-  span.style.left = `${leftPosition}px`
-  span.style.overflow = 'inherited'
-  span.addEventListener('click', function () { clickedDot(this, dotValue) }, 'false')
-  gameArea.append(span)
-}
+//   span.setAttribute('class', 'dot')
+//   span.style.borderRadius = '50%'
+//   span.style.position = 'absolute'
+//   // span.style.width = `${dotSize}px`
+//   // span.style.height = `${dotSize}px`
+//   // span.style.backgroundColor = '#FB6970'
+//   span.style.top = '-100px'
+//   span.style.cursor = 'pointer'
+//   span.style.left = `${leftPosition}px`
+//   // span.style.overflow = 'inherited'
+//   // span.addEventListener('click', function () { clickedDot(this, dotValue) }, 'false')
+//   gameArea.append(span)
+// }
 
 // action for when a dot is clicked
-function clickedDot(el, val) {
-  if (turnedOn) {
-    score += val
-    scoreTrack.innerHTML = score
-    el.remove()
-  }
-}
+// function clickedDot(el, val) {
+//   if (turnedOn) {
+//     score += val
+//     scoreTrack.innerHTML = score
+//     el.remove()
+//   }
+// }
 
 // move dots down the screen
-function animateDots() {
-  const pixelIncrement = slider.value/10
-  let dots = document.querySelectorAll(".dot")
-  dots.forEach((dot) => {
-    let currentPosition = parseInt(dot.style.top.slice(0, -2))
-    if (currentPosition > bottomOfGameScreen) {
-      dot.remove()
-    }
-    dot.style.top = `${pixelIncrement + currentPosition}px`
-  });
-}
+// function animateDots() {
+//   const pixelIncrement = slider.value/10
+//   let dots = document.querySelectorAll(".dot")
+//   dots.forEach((dot) => {
+//     let currentPosition = parseInt(dot.style.top.slice(0, -2))
+//     if (currentPosition > bottomOfGameScreen) {
+//       dot.remove()
+//     }
+//     dot.style.top = `${pixelIncrement + currentPosition}px`
+//   });
+// }
 
-// caculate the value of dot based on the size
-function calcValue(size) {
-  if (size <= 20) {
-    return 10
-  }
-  if (size <= 40) {
-    return 7
-  }
-  if (size <= 60) {
-    return 5
-  }
-  if (size <= 80) {
-    return 3
-  }
-  return 1
-}
+// calculate the value of dot based on the size
+// function calcValue(size) {
+//   if (size <= 20) {
+//     return 10
+//   }
+//   if (size <= 40) {
+//     return 7
+//   }
+//   if (size <= 60) {
+//     return 5
+//   }
+//   if (size <= 80) {
+//     return 3
+//   }
+//   return 1
+// }
 
 // helper function to get a random size for the 
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1) + min); 
+// function getRandomInt(min, max) {
+//   min = Math.ceil(min)
+//   max = Math.floor(max)
+//   return Math.floor(Math.random() * (max - min + 1) + min); 
+// }
+
+
+// --- Global
+
+const FRAME_DURATION = 1000 / 60; // 60fps frame duration
+const getTime = typeof performance === 'function' ? performance.now : Date.now;
+const MAX_POSITION = 575
+
+// ---- Request animation frame with delta fix
+
+const dots = document.querySelector('.dot')
+let positionRafDelta = []
+// let lastRafUpdate = getTime();
+let lastRafUpdate = []
+
+function animateRafDelta() {
+  const now = getTime()
+  const delta = (now - lastRafUpdate) / FRAME_DURATION;
+  lastRafUpdate[i] = getTime()
+  for (let i = 0; i < dots.length; i++) {
+    //getTime()
+    //update to now
+    positionRafDelta[i] += slider.value * .1 * delta;
+
+    // Reset position
+    // if (positionRafDelta > MAX_POSITION) {
+    //   dot.remove()
+    // }
+
+  // Update position
+    dots[i].style.transform = `translateY(${ positionRafDelta[i] }px)`;
+
+    // Update last updated time
+    lastRafUpdate[i] = now;
+
+  }
+
+
+  request = requestAnimationFrame(animateRafDelta);
 }
+
+button.addEventListener('click', e => {
+  // when the button is clicked to start the game, the following happens:
+  if (!turnedOn) {
+    turnedOn = true
+    e.currentTarget.textContent = 'PAUSE'
+    request = requestAnimationFrame(animateRafDelta)
+    popUp.classList.add("hidden")
+  } else {
+    // when the button is clicked to pause the game, the following happens:
+    turnedOn = false
+    e.currentTarget.textContent = 'START'
+    request = cancelAnimationFrame(request)
+    popUp.classList.remove("hidden")
+  }
+})
