@@ -14,10 +14,6 @@ const scoreTrack = document.getElementById("score")
 let turnedOn = false
 
 let popUp = document.getElementById("menu");
-let flag = false
-function showMenu(flag) {
-  popUp.classList.toggle("hidden");
-};
 
 function getSpeed() {
   const speedInt = parseInt(slider.value)
@@ -43,11 +39,13 @@ button.addEventListener('click', e => {
     e.currentTarget.textContent = 'Pause'
     interval = setInterval(createDot, 1000)
     request = requestAnimationFrame(move)
+    popUp.classList.add("hidden")
   } else {
     turnedOn = false
     e.currentTarget.textContent = 'Start'
     clearInterval(interval)
     request = cancelAnimationFrame(request)
+    popUp.classList.remove("hidden")
   }
 })
 
@@ -57,8 +55,6 @@ function clickedDot(el, val) {
     score += val
     scoreTrack.innerHTML = score
     el.remove();
-  } else {
-    showMenu(true)
   }
 }
 
