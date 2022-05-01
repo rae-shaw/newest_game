@@ -69,7 +69,8 @@ function setSpeedText() {
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
-  const leftPosition = getRandomInt(0, width)
+  const noOverFlow = width - dotSize;
+  const leftPosition = getRandomInt(0, noOverFlow)
   const dotValue = calcValue(dotSize)
 
   span.setAttribute('class', 'dot')
