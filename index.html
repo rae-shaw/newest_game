@@ -9,7 +9,7 @@
 
 </head>
 <body class="flex bg-cover justify-center overflow-hidden pt-2 md:pb-2 sm:pb-2 bg-90s-pattern">
-  <main class="flex flex-col h-full w-3/4 bg-white font-sans rounded border-2 border-special-purple font-extrabold">
+  <main class="flex flex-col h-[95vh] w-3/4 bg-white font-sans rounded border-2 border-special-purple font-extrabold">
     <section class="flex flex-col bg-white-300 p-4">
       <div class="flex flex-row justify-between px-4">
           <div class="flex-row mb-1 p-2">
@@ -43,13 +43,13 @@
       <div class="flex w-full p-2 justify-center">
       <div class="flex flex-col w-5/6 p-2">
         <div class="p-2">
-          <input id="game-slider" role="slider" name="game-slider" class="rounded-lg appearance-none bg-special-purple h-0.5 w-5/6" type="range" min="10" max="100" value="10" />
+          <input id="game-slider" role="slider" name="game-slider" class="rounded-lg appearance-none bg-special-purple h-0.5 w-5/6" type="range" min="10" max="100" value="10" step="10" />
         </div>
         <label id="speed" class="p-2 text-blue-600" for="game-slider">SPEED: 10</label>
       </div>
     </div>
     </section>
-    <section id="game" class="relative bg-special-purple w-full overflow-hidden min-h-[75vh]">
+    <section id="game" class="relative bg-special-purple w-full overflow-hidden h-[75vh]">
       <div class="flex justify-center items-center">
         <div id="menu" role="dialog" aria-labelledby="modal-title" class="animate-right-in w-full min-h-[75vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
           <div id="modal-title" class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">

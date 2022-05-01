@@ -25,7 +25,6 @@ const sliderLabel = document.getElementById('speed')
 // compute values to use in dot creation and dot animation
 const computedStyles = window.getComputedStyle(gameArea)
 const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''))
-const bottomOfGameScreen = height * 1.5;
 const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''))
 
 
@@ -98,14 +97,15 @@ function clickedDot(el, val) {
 
 // move dots down the screen
 function animateDots() {
-  const pixelIncrement = slider.value/10
+  const speed = parseInt(slider.value)/10
   let dots = document.querySelectorAll(".dot")
   dots.forEach((dot) => {
-    let currentPosition = parseInt(dot.style.top.slice(0, -2))
-    if (currentPosition > bottomOfGameScreen) {
+    let currentPosition = parseInt(dot.style.top, 10)
+    let velocity = currentPosition += speed;
+    if (currentPosition > height) {
       dot.remove()
     }
-    dot.style.top = `${pixelIncrement + currentPosition}px`
+      dot.style.top = `${velocity}px`
   });
 }
 
