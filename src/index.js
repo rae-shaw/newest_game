@@ -17,6 +17,7 @@ let request
 // get the elements on the screen to use and manipulate
 const gameArea = document.getElementById('game')
 const button = document.getElementById('btn')
+const resetGame = document.getElementById('reset')
 const popUp = document.getElementById("menu")
 const scoreTrack = document.getElementById("score")
 const slider = document.getElementById('game-slider')
@@ -27,6 +28,7 @@ const computedStyles = window.getComputedStyle(gameArea)
 const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''))
 const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''))
 
+document.addEventListener("visibilitychange", clearInterval(interval));
 
 // on click action
 button.addEventListener('click', e => {
@@ -45,6 +47,23 @@ button.addEventListener('click', e => {
     request = cancelAnimationFrame(request)
     popUp.classList.remove("hidden")
   }
+})
+
+resetGame.addEventListener('click', e => {
+  let dots = document.querySelectorAll(".dot")
+  dots.forEach((dot) => {
+    dot.remove()
+  })
+  popUp.classList.add("hidden")
+  button.textContent = 'START'
+  clearInterval(interval)
+  request = cancelAnimationFrame(request)
+  score = 0
+  turnedOn = false
+  slider.value = 0
+  scoreTrack.innerHTML = '0'
+  sliderLabel.innerHTML = `Speed: ${slider.value}`
+  console.log('clicked', e)
 })
 
 // recursive function using requestAnimationFrame to slide the dots down the screen
