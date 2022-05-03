@@ -498,6 +498,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.h-\[95vh\]{
+  height: 95vh;
+}
+
 .h-0\.5{
   height: 0.125rem;
 }
@@ -506,12 +510,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 0px;
 }
 
-.h-full{
-  height: 100%;
+.h-\[75vh\]{
+  height: 75vh;
 }
 
-.h-5\/6{
-  height: 83.333333%;
+.h-full{
+  height: 100%;
 }
 
 .min-h-\[75vh\]{
@@ -528,6 +532,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-5\/6{
   width: 83.333333%;
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @-webkit-keyframes right-in{
@@ -655,15 +663,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-48{
   padding-top: 12rem;
   padding-bottom: 12rem;
-}
-
-.py-5{
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
-.pt-5{
-  padding-top: 1.25rem;
 }
 
 .pt-2{
