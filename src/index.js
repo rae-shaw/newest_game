@@ -18,43 +18,47 @@ let request
 const gameArea = document.getElementById('game')
 const button = document.getElementById('btn')
 const resetGame = document.getElementById('reset')
-const popUp = document.getElementById("menu")
-const scoreTrack = document.getElementById("score")
+const popUp = document.getElementById('menu')
+const scoreTrack = document.getElementById('score')
 const slider = document.getElementById('game-slider')
 const sliderLabel = document.getElementById('speed')
 
 // compute values to use in dot creation and dot animation
 const computedStyles = window.getComputedStyle(gameArea)
-const height = parseInt(computedStyles.getPropertyValue('height').replace('px', ''))
-const width = parseInt(computedStyles.getPropertyValue('width').replace('px', ''))
+const height = parseInt(
+  computedStyles.getPropertyValue('height').replace('px', '')
+)
+const width = parseInt(
+  computedStyles.getPropertyValue('width').replace('px', '')
+)
 
-document.addEventListener("visibilitychange", clearInterval(interval));
+document.addEventListener('visibilitychange', clearInterval(interval))
 
 // on click action
-button.addEventListener('click', e => {
+button.addEventListener('click', (e) => {
   // when the button is clicked to start the game, the following happens:
   if (!turnedOn) {
     turnedOn = true
     e.currentTarget.textContent = 'PAUSE'
     interval = setInterval(createDot, 1000)
     request = requestAnimationFrame(move)
-    popUp.classList.add("hidden")
+    popUp.classList.add('hidden')
   } else {
     // when the button is clicked to pause the game, the following happens:
     turnedOn = false
     e.currentTarget.textContent = 'START'
     clearInterval(interval)
     request = cancelAnimationFrame(request)
-    popUp.classList.remove("hidden")
+    popUp.classList.remove('hidden')
   }
 })
 
-resetGame.addEventListener('click', e => {
-  let dots = document.querySelectorAll(".dot")
+resetGame.addEventListener('click', (e) => {
+  let dots = document.querySelectorAll('.dot')
   dots.forEach((dot) => {
     dot.remove()
   })
-  popUp.classList.add("hidden")
+  popUp.classList.add('hidden')
   button.textContent = 'START'
   clearInterval(interval)
   request = cancelAnimationFrame(request)
@@ -63,7 +67,6 @@ resetGame.addEventListener('click', e => {
   slider.value = 0
   scoreTrack.innerHTML = '0'
   sliderLabel.innerHTML = `Speed: ${slider.value}`
-  console.log('clicked', e)
 })
 
 // recursive function using requestAnimationFrame to slide the dots down the screen
@@ -87,7 +90,7 @@ function setSpeedText() {
 function createDot() {
   const span = document.createElement('div')
   const dotSize = getRandomInt(10, 100)
-  const noOverFlow = width - dotSize;
+  const noOverFlow = width - dotSize
   const leftPosition = getRandomInt(0, noOverFlow)
   const dotValue = calcValue(dotSize)
 
@@ -101,7 +104,13 @@ function createDot() {
   span.style.cursor = 'pointer'
   span.style.left = `${leftPosition}px`
   span.style.overflow = 'inherited'
-  span.addEventListener('click', function () { clickedDot(this, dotValue) }, 'false')
+  span.addEventListener(
+    'click',
+    function () {
+      clickedDot(this, dotValue)
+    },
+    'false'
+  )
   gameArea.append(span)
 }
 
@@ -116,16 +125,15 @@ function clickedDot(el, val) {
 
 // move dots down the screen
 function animateDots() {
-  const speed = parseInt(slider.value)/10
-  let dots = document.querySelectorAll(".dot")
+  let dots = document.querySelectorAll('.dot')
+  const speed = slider.value
   dots.forEach((dot) => {
-    let currentPosition = parseInt(dot.style.top, 10)
-    let velocity = currentPosition += speed;
+    let currentPosition = parseInt(dot.style.top)
     if (currentPosition > height) {
       dot.remove()
     }
-      dot.style.top = `${velocity}px`
-  });
+    dot.style.transform = `translateY(${speed}px)`
+  })
 }
 
 // caculate the value of dot based on the size
@@ -145,9 +153,9 @@ function calcValue(size) {
   return 1
 }
 
-// helper function to get a random size for the 
+// helper function to get a random size for the
 function getRandomInt(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1) + min); 
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }

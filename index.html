@@ -1,88 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Dot Game</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link href="/src/main.css" rel="stylesheet">
-  <link href="/dist/output.css" rel="stylesheet">
+  <head>
+    <title>Dot Game</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/main.css" rel="stylesheet" />
+    <link href="/dist/output.css" rel="stylesheet" />
+  </head>
 
-</head>
-<body class="flex bg-cover justify-center overflow-hidden pt-2 md:pb-2 sm:pb-2 bg-90s-pattern">
-  <main class="flex flex-col h-[95vh] w-3/4 bg-white font-sans rounded border-2 border-special-purple font-extrabold">
-    <section class="flex flex-col bg-white-300 p-4">
-      <div class="flex flex-row justify-between px-4">
-          <div class="flex-row mb-1 p-2">
-            <h1 class="text-5xl text-special-red  font-thin">
+  <body
+    class="flex justify-center overflow-hidden bg-90s-pattern bg-cover pt-2 sm:pb-2 md:pb-2"
+  >
+    <main
+      class="flex h-[95vh] w-3/4 flex-col rounded border-2 border-special-purple bg-white font-sans font-extrabold"
+    >
+      <section class="bg-white-300 flex flex-col p-4">
+        <div class="flex flex-row justify-between px-4">
+          <div class="mb-1 flex-row p-2">
+            <h1 class="text-5xl font-thin text-special-red">
               <span id="score" aria-live="polite">0</span>
             </h1>
           </div>
           <div class="flex">
-          <div class="mb-1 p-2">
-            <button 
-            id="btn"
-            type="button" 
-            class="
-            flex
-            text-lg
-            hover:bg-white
-            bg-special-red 
-            border-2
-            hover:text-special-purple
-            hover:border-special-purple
-            text-white
-            font-extrabold
-            py-2
-            px-4
-            shadow-inner
-            rounded">
-              START
-            </button>
-          </div>
-          <div class="mb-1 p-2">
-            <button 
-            id="reset"
-            type="submit" 
-            class="
-            flex
-            text-lg
-            hover:bg-white
-            bg-special-red 
-            border-2
-            hover:text-special-purple
-            hover:border-special-purple
-            text-white
-            font-extrabold
-            py-2
-            px-4
-            shadow-inner
-            rounded">
-             RESET
-            </button>
+            <div class="mb-1 p-2">
+              <button
+                id="btn"
+                type="button"
+                class="flex rounded border-2 bg-special-red py-2 px-4 text-lg font-extrabold text-white shadow-inner hover:border-special-purple hover:bg-white hover:text-special-purple"
+              >
+                START
+              </button>
+            </div>
+            <div class="mb-1 p-2">
+              <button
+                id="reset"
+                type="submit"
+                class="flex rounded border-2 bg-special-red py-2 px-4 text-lg font-extrabold text-white shadow-inner hover:border-special-purple hover:bg-white hover:text-special-purple"
+              >
+                RESET
+              </button>
+            </div>
           </div>
         </div>
-        </span>
-      </div>
-      <div class="flex w-full p-2 justify-center">
-      <div class="flex flex-col w-5/6 p-2">
-        <div class="p-2">
-          <input id="game-slider" role="slider" name="game-slider" class="rounded-lg appearance-none bg-special-purple h-0.5 w-5/6" type="range" min="10" max="100" value="10" step="10" />
+        <div class="flex w-full justify-center p-2">
+          <div class="flex w-5/6 flex-col p-2">
+            <div class="p-2">
+              <input
+                id="game-slider"
+                role="slider"
+                name="game-slider"
+                class="h-0.5 w-5/6 appearance-none rounded-lg bg-special-purple"
+                type="range"
+                min="10"
+                max="100"
+                value="10"
+                step="10"
+              />
+            </div>
+            <label id="speed" class="p-2 text-blue-600" for="game-slider"
+              >SPEED: 10</label
+            >
+          </div>
         </div>
-        <label id="speed" class="p-2 text-blue-600" for="game-slider">SPEED: 10</label>
-      </div>
-    </div>
-    </section>
-    <section id="game" class="relative bg-special-purple w-full overflow-hidden h-[75vh]">
-      <div class="flex justify-center items-center">
-        <div id="menu" role="dialog" aria-labelledby="modal-title" class="animate-right-in w-full min-h-[75vh] bg-gray-700 bg-opacity-80 z-40 top-0 sticky-0 hidden">
-          <div id="modal-title" class="py-48 px-4 w-full h-full text-center text-5xl text-special-red">
+      </section>
+      <section
+        id="game"
+        class="relative h-[75vh] w-full overflow-hidden bg-special-purple"
+      >
+        <div class="flex items-center justify-center">
+          <div
+            id="menu"
+            role="dialog"
+            aria-labelledby="modal-title"
+            class="sticky-0 top-0 z-40 hidden min-h-[75vh] w-full animate-right-in bg-gray-700 bg-opacity-80"
+          >
+            <div
+              id="modal-title"
+              class="h-full w-full py-48 px-4 text-center text-5xl text-special-red"
+            >
               GAME PAUSED
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-</div>
-  <script src="src/index.js"></script>
-</body>
+      </section>
+    </main>
+    <script src="src/index.js"></script>
+  </body>
 </html>
