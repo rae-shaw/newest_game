@@ -54,6 +54,7 @@ button.addEventListener('click', (e) => {
   }
 })
 
+// when the reset button is clicked, the following happens:
 resetGame.addEventListener('click', (e) => {
   let dots = document.querySelectorAll('.dot')
   dots.forEach((dot) => {
