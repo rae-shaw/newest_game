@@ -11,7 +11,7 @@ let interval = 0
 // track whether the game is running or not
 let turnedOn = false
 
-// tracks ///////////////////////
+// tracks request animation frame ///////////////////////
 let request
 
 // get the elements on the screen to use and manipulate
@@ -32,6 +32,7 @@ const width = parseInt(
   computedStyles.getPropertyValue('width').replace('px', '')
 )
 
+// when tab/window is not active, stop creating dots
 document.addEventListener('visibilitychange', clearInterval(interval))
 
 // on click action
@@ -125,18 +126,19 @@ function clickedDot(el, val) {
 
 // move dots down the screen
 function animateDots() {
+  const speed = parseInt(slider.value) / 10
   let dots = document.querySelectorAll('.dot')
-  const speed = slider.value
   dots.forEach((dot) => {
-    let currentPosition = parseInt(dot.style.top)
+    let currentPosition = parseInt(dot.style.top, 10)
+    let velocity = (currentPosition += speed)
     if (currentPosition > height) {
       dot.remove()
     }
-    dot.style.transform = `translateY(${speed}px)`
+    dot.style.top = `${velocity}px`
   })
 }
 
-// caculate the value of dot based on the size
+// calculate the value of dot based on the size
 function calcValue(size) {
   if (size <= 20) {
     return 10
